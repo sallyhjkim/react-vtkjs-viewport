@@ -9,6 +9,7 @@ import VTKLoadImageDataExample from './VTKLoadImageDataExample.js';
 import VTKCrosshairsExample from './VTKCrosshairsExample.js';
 import VTKMPRRotateExample from './VTKMPRRotateExample.js';
 import VTKVolumeRenderingExample from './VTKVolumeRenderingExample.js';
+import VTKBasicExampleHook from './VTKBasicExampleHook';
 
 function LinkOut({ href, text }) {
   return (
@@ -37,6 +38,12 @@ function Index() {
 
   const examples = [
     {
+      title: 'Basic Hook Usage',
+      url: '/hookBasic',
+      text:
+        'How to use the component to render an array of vtkVolumes and manipulate their RGB Transfer Functions with React Hook',
+    },
+    {
       title: 'Basic Usage',
       url: '/basic',
       text:
@@ -51,8 +58,7 @@ function Index() {
     {
       title: 'Volume Rendering',
       url: '/volume-rendering',
-      text:
-        'Demonstrates how to perform volume rendering for a CT volume.',
+      text: 'Demonstrates how to perform volume rendering for a CT volume.',
     },
     {
       title: 'Image Segmentation via Paint Widget',
@@ -136,6 +142,7 @@ function AppRouter() {
   console.warn('approuter');
 
   // TODO: There is definitely a better way to do this
+  const hookBasic = () => Example({ children: <VTKBasicExampleHook /> });
   const basic = () => Example({ children: <VTKBasicExample /> });
   const fusion = () => Example({ children: <VTKFusionExample /> });
   const painting = () => Example({ children: <VTKMPRPaintingExample /> });
@@ -144,12 +151,14 @@ function AppRouter() {
     Example({ children: <VTKCornerstonePaintingSyncExample /> });
   const crosshairs = () => Example({ children: <VTKCrosshairsExample /> });
   const rotateMPR = () => Example({ children: <VTKMPRRotateExample /> });
-  const volumeRendering = () => Example({ children: <VTKVolumeRenderingExample /> });
+  const volumeRendering = () =>
+    Example({ children: <VTKVolumeRenderingExample /> });
 
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={Index} />
+        <Route exact path="/hookBasic" component={hookBasic} />
         <Route exact path="/basic/" render={basic} />
         <Route exact path="/fusion/" render={fusion} />
         <Route exact path="/painting" render={painting} />

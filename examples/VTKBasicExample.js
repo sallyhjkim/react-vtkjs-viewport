@@ -40,7 +40,6 @@ class VTKBasicExample extends Component {
     reader.setUrl('/headsq.vti', { loadData: true }).then(() => {
       const data = reader.getOutputData();
       volumeMapper.setInputData(data);
-
       this.setState({
         volumes: [volumeActor],
       });
